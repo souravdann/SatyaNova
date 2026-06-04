@@ -1,0 +1,479 @@
+/* Remove default margin and padding */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Website Font */
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+}
+
+/* ==================
+   NAVBAR
+================== */
+
+.navbar {
+
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+    background: white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 5%;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    z-index: 1000;
+}
+
+
+/* Logo Image */
+
+.logo img {
+
+    width: 70px;
+    height: auto;
+
+    object-fit: contain;
+    cursor: pointer;
+}
+
+/* Search */
+
+.search-box {
+    position: relative;
+}
+
+.search-box input {
+
+    padding: 10px 40px 10px 15px;
+
+    border-radius: 30px;
+
+    border: 1px solid #ccc;
+}
+
+.search-box i {
+
+    position: absolute;
+
+    right: 15px;
+    top: 12px;
+}
+
+/* Navigation */
+
+.nav-links {
+
+    display: flex;
+    gap: 20px;
+
+    list-style: none;
+}
+
+
+/* Science Button */
+
+.science-btn {
+
+    background: #1E3A8A;
+
+    color: white;
+
+    border: none;
+
+    padding: 10px 20px;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+}
+
+/* Science button hover */
+.science-btn,
+.spiritual-btn {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    transition: 0.3s;
+}
+
+.science-btn:hover,
+.spiritual-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/*  Rotate Arrow Animation for dropdown*/
+.arrow {
+
+    transition: 0.3s;
+}
+
+.dropdown:hover .arrow {
+
+    transform: rotate(180deg);
+}
+
+/* Spiritual Button */
+
+.spiritual-btn {
+
+    background: #F59E0B;
+
+    color: white;
+
+    border: none;
+
+    padding: 10px 20px;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+}
+
+/* ==================================
+   MODERN DROPDOWN MENU
+================================== */
+
+.dropdown {
+
+    position: relative;
+    padding-bottom: 15px;
+}
+
+/* Dropdown Panel */
+
+.dropdown-content {
+
+    position: absolute;
+
+    top: 60px;
+    left: 0;
+
+    min-width: 240px;
+
+    list-style: none;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    backdrop-filter: blur(10px);
+
+    border-radius: 16px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+    padding: 10px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(15px);
+
+    transition: all 0.3s ease;
+
+    z-index: 999;
+}
+
+/* Show Menu */
+
+.dropdown:hover .dropdown-content {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+/* Menu Links */
+
+.dropdown-content li a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px 15px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    color: #222;
+
+    font-weight: 500;
+
+    transition: 0.3s;
+}
+
+/* Hover Effect */
+
+.dropdown-content li a:hover {
+
+    background: #f1f5f9;
+
+    transform: translateX(5px);
+}
+
+/* Icons */
+
+.dropdown-content i {
+
+    width: 20px;
+
+    text-align: center;
+
+    color: #1E3A8A;
+}
+
+/* =====================================
+   ABOUT SECTION
+===================================== */
+
+.about-section {
+
+    width: 100%;
+
+    min-height: 500px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 50px;
+
+    padding: 150px 8% 80px;
+
+}
+
+/* Left Content */
+
+.about-content {
+
+    flex: 1;
+}
+
+.about-content h1 {
+
+    font-size: 3rem;
+
+    margin-bottom: 25px;
+
+    color: #1E3A8A;
+}
+
+.about-content p {
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    color: #444;
+
+    margin-bottom: 20px;
+}
+
+/* Button */
+
+.about-btn {
+
+    padding: 12px 30px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: #1E3A8A;
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.about-btn:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Right Video */
+
+.about-video {
+
+    flex: 1;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+.about-video video {
+
+    width: 100%;
+
+    max-width: 650px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================
+   FOOTER
+================== */
+
+footer {
+
+    text-align: center;
+
+    background: white;
+
+    padding: 30px;
+}
+
+.social-icons {
+
+    margin-bottom: 15px;
+}
+
+.social-icons a {
+
+    font-size: 25px;
+
+    margin: 0 10px;
+
+    color: #333;
+}
+
+/* ==================
+   HAMBURGER
+================== */
+
+.hamburger {
+
+    display: none;
+
+    flex-direction: column;
+
+    cursor: pointer;
+}
+
+.hamburger span {
+
+    width: 25px;
+
+    height: 3px;
+
+    background: black;
+
+    margin: 3px;
+
+    transition: 0.3s;
+}
+
+/* ==================
+   MOBILE
+================== */
+
+@media(max-width:768px) {
+
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+
+        position: absolute;
+
+        top: 80px;
+
+        right: -100%;
+
+        width: 250px;
+
+        background: white;
+
+        flex-direction: column;
+
+        padding: 20px;
+
+        transition: 0.4s;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .search-box {
+        display: none;
+    }
+
+    .card {
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .card img {
+
+        margin-top: 15px;
+
+        width: 100%;
+    }
+
+    /* About Section For mobile */
+    .about-section {
+
+        flex-direction: column;
+
+        text-align: center;
+
+        padding-top: 120px;
+    }
+
+    .about-content h1 {
+
+        font-size: 2rem;
+    }
+
+    .about-content p {
+
+        font-size: 16px;
+    }
+
+    .about-video video {
+
+        width: 100%;
+    }
+}
