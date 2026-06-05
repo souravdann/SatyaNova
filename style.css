@@ -13,11 +13,14 @@
 
 html{
     scroll-behavior:smooth;
+    overflow-x:hidden;
 }
 
 body{
     background:linear-gradient(135deg,#091428,#1c2541);
     color:white;
+    overflow-x:hidden;
+    width:100%;
 }
 
 /* =========================
@@ -50,6 +53,8 @@ body{
 
 .logo img{
     height:55px;
+    width:auto;
+    max-width:100%;
 }
 
 .logo span{
@@ -247,18 +252,22 @@ footer{
 
     .menu-btn{
         display:flex;
+        z-index:1001;
     }
 
     .navbar{
 
-        position:absolute;
+        position:fixed;
 
-        top:80px;
-        right:-100%;
+        top:85px;
+        right:-300px;
 
-        width:250px;
+        width:220px;
+        max-width:80vw;
 
+        display:flex;
         flex-direction:column;
+        gap:15px;
 
         background:#111827;
 
@@ -266,11 +275,13 @@ footer{
 
         border-radius:20px;
 
-        transition:.4s;
+        transition:right .4s ease;
+
+        z-index:1000;
     }
 
     .navbar.active{
-        right:20px;
+        right:15px;
     }
 
     .hero h1{
