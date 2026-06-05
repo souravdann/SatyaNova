@@ -7,4 +7,5 @@ const navbar = document.getElementById("navbar");
 
 menuBtn.addEventListener("click", () => {
     navbar.classList.toggle("active");
+    menuBtn.classList.toggle("active");
 });
