@@ -230,16 +230,22 @@ body {
     cursor: pointer;
 }
 
+
 .card:hover {
     transform: translateY(-8px);
 }
 
+/* card images */
 .science {
     background: linear-gradient(135deg, #1dd1a1, #10ac84);
 }
 
 .spirituality {
     background: linear-gradient(135deg, #6c5ce7, #4834d4);
+}
+
+.space {
+    background: linear-gradient(135deg, #64049f, #10ac84);
 }
 
 .card h2 {
@@ -319,6 +325,8 @@ footer {
 
     transform: translateY(-5px);
 }
+
+
 
 /* =========================
    MOBILE RESPONSIVE
