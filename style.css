@@ -42,7 +42,7 @@ body {
     color: white;
     overflow-x: hidden;
     width: 100%;
-    
+
 }
 
 /* =========================
@@ -252,6 +252,15 @@ body {
 }
 
 
+/* For images */
+
+.space-image {
+    width: 100%;
+    max-width: 700px;
+    display: block;
+    margin: 0 auto 20px;
+    border-radius: 20px;
+}
 
 /* =========================
    FINAL SECTION
