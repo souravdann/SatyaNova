@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SatyaNova – From Learning to Launching</title>
+  <title>SatyaNova</title>
 
   <!-- Favicon -->
   <link rel="icon" href="Favlogo.png" type="image/png">
 
-  <!-- Google Fonts: Inter for body, Syne for display -->
+  <!-- Google Fonts: Inter only — clean modern style -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Font Awesome for social icons & hamburger -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -133,31 +133,124 @@
       gap: 14px;
     }
 
-    /* Theme toggle pill */
+    /* ---- PREMIUM THEME TOGGLE SWITCH ---- */
+    /* Outer wrapper that holds the track + icons */
     .theme-toggle {
+      position: relative;
       display: flex;
       align-items: center;
-      gap: 8px;
-      background: var(--accent-soft);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 6px 14px;
+      gap: 0;
       cursor: pointer;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--accent);
-      transition: background var(--transition), transform 0.2s;
+      background: none;
+      border: none;
+      padding: 0;
       user-select: none;
-      white-space: nowrap;
     }
 
-    .theme-toggle:hover { transform: scale(1.04); }
-
-    /* Theme icon rotates on switch */
-    .theme-toggle .icon {
-      font-size: 1rem;
-      transition: transform 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.3s;
+    /* The toggle track (pill-shaped background) */
+    .toggle-track {
+      width: 64px;
+      height: 32px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #1e3a5f, #0f172a);
+      border: 1.5px solid rgba(59,130,246,0.4);
+      position: relative;
+      transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 0 0 12px rgba(59,130,246,0.25), inset 0 1px 3px rgba(0,0,0,0.4);
     }
+
+    /* Light mode track style */
+    [data-theme="light"] .toggle-track {
+      background: linear-gradient(135deg, #fde68a, #fbbf24);
+      border-color: rgba(251,191,36,0.6);
+      box-shadow: 0 0 14px rgba(251,191,36,0.4), inset 0 1px 3px rgba(0,0,0,0.15);
+    }
+
+    /* The sliding knob */
+    .toggle-knob {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c0d8ff, #ffffff);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1),
+                  background 0.4s ease, box-shadow 0.4s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      overflow: hidden;
+    }
+
+    /* Knob slides right in light mode */
+    [data-theme="light"] .toggle-knob {
+      transform: translateX(32px);
+      background: linear-gradient(135deg, #fff7ed, #ffffff);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    /* Moon icon (shown in dark mode) */
+    .knob-moon {
+      position: absolute;
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+      transition: opacity 0.3s, transform 0.4s;
+      font-size: 0.8rem;
+    }
+
+    /* Sun icon (shown in light mode) */
+    .knob-sun {
+      position: absolute;
+      opacity: 0;
+      transform: scale(0.4) rotate(-90deg);
+      transition: opacity 0.3s, transform 0.4s;
+      font-size: 0.85rem;
+    }
+
+    /* Swap icons when light */
+    [data-theme="light"] .knob-moon { opacity: 0; transform: scale(0.4) rotate(90deg); }
+    [data-theme="light"] .knob-sun  { opacity: 1; transform: scale(1) rotate(0deg); }
+
+    /* Stars on the track (dark mode decoration) */
+    .toggle-stars {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border-radius: 999px;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .toggle-stars span {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    /* Three small stars */
+    .toggle-stars span:nth-child(1) { width:3px; height:3px; top:6px;  left:38px; }
+    .toggle-stars span:nth-child(2) { width:2px; height:2px; top:16px; left:48px; }
+    .toggle-stars span:nth-child(3) { width:2px; height:2px; top:8px;  left:52px; }
+
+    /* Stars visible in dark mode */
+    [data-theme="dark"] .toggle-stars span { opacity: 0.7; }
+
+    /* Hover glow on track */
+    .theme-toggle:hover .toggle-track {
+      box-shadow: 0 0 20px rgba(59,130,246,0.45), inset 0 1px 3px rgba(0,0,0,0.4);
+    }
+
+    [data-theme="light"] .theme-toggle:hover .toggle-track {
+      box-shadow: 0 0 20px rgba(251,191,36,0.6), inset 0 1px 3px rgba(0,0,0,0.15);
+    }
+
+    /* Active press effect */
+    .theme-toggle:active .toggle-knob { transform: scaleX(1.2); }
+    [data-theme="light"] .theme-toggle:active .toggle-knob { transform: translateX(32px) scaleX(1.2); }
 
     /* Desktop CTA button */
     .btn-primary {
@@ -326,9 +419,9 @@
       animation: fadeSlideDown 0.7s ease both;
     }
 
-    /* Big headline using Syne display face */
+    /* Big headline — clean Inter, no display font */
     .hero h1 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: clamp(2.4rem, 6vw, 5rem);
       font-weight: 800;
       line-height: 1.1;
@@ -429,7 +522,7 @@
     }
 
     .poster h2 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: clamp(1.8rem, 4.5vw, 3.5rem);
       font-weight: 800;
       color: #fff;
@@ -445,7 +538,7 @@
     }
 
     .poster-price {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: clamp(3rem, 8vw, 6rem);
       font-weight: 800;
       color: #fff;
@@ -492,7 +585,7 @@
     }
 
     .section-header h2 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: clamp(1.8rem, 4vw, 2.8rem);
       font-weight: 800;
       margin-bottom: 0;
@@ -553,7 +646,7 @@
     }
 
     .card h3 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 1.15rem;
       font-weight: 700;
       margin-bottom: 8px;
@@ -593,7 +686,7 @@
     }
 
     .step-num {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 5rem;
       font-weight: 800;
       color: var(--border);
@@ -605,7 +698,7 @@
     .step-card:hover .step-num { color: var(--accent-soft); }
 
     .step-card h3 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 1.1rem;
       font-weight: 700;
       margin-bottom: 8px;
@@ -655,7 +748,7 @@
     }
 
     .price-big {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 5rem;
       font-weight: 800;
       color: var(--accent2);
@@ -700,7 +793,7 @@
     }
 
     .about-text h2 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: clamp(1.8rem, 3.5vw, 2.5rem);
       font-weight: 800;
       margin-bottom: 16px;
@@ -710,7 +803,7 @@
     .about-text p { color: var(--text-muted); margin-bottom: 14px; }
 
     .about-tagline {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 1.3rem;
       font-weight: 700;
       color: var(--accent2);
@@ -733,7 +826,7 @@
     }
 
     .stat-box .stat-num {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 2rem;
       font-weight: 800;
       color: var(--accent2);
@@ -826,7 +919,7 @@
     }
 
     .footer-brand .tagline {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 1rem;
       font-weight: 700;
       color: var(--accent2);
@@ -865,7 +958,7 @@
 
     /* Footer nav columns */
     .footer-col h4 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 0.88rem;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -968,9 +1061,6 @@
       .nav-links, .desktop-btn { display: none; }
       .hamburger { display: block; }
 
-      /* Collapse theme toggle label on small screens */
-      .theme-toggle span.toggle-label { display: none; }
-
       .hero { padding: 70px 5% 60px; }
       .poster { margin: 0 4% 60px; padding: 50px 6%; }
       .footer-top { grid-template-columns: 1fr; gap: 32px; }
@@ -1014,10 +1104,21 @@
   <!-- Right-side controls: theme toggle + CTA + hamburger -->
   <div class="header-right">
 
-    <!-- Light / Dark theme toggle pill -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Switch theme">
-      <span class="icon" id="themeIcon">☀️</span>
-      <span class="toggle-label" id="themeLabel">Light</span>
+    <!-- Premium animated Light / Dark theme toggle switch -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Switch between dark and light mode">
+      <div class="toggle-track">
+        <!-- Decorative stars visible in dark mode -->
+        <div class="toggle-stars">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <!-- Sliding knob with moon/sun icons -->
+        <div class="toggle-knob">
+          <span class="knob-moon">🌙</span>
+          <span class="knob-sun">☀️</span>
+        </div>
+      </div>
     </button>
 
     <!-- Desktop WhatsApp CTA (hidden on mobile) -->
@@ -1389,7 +1490,7 @@
         <a href="#" class="social-link tw" aria-label="X / Twitter" title="Twitter / X">
           <i class="fa-brands fa-x-twitter"></i>
         </a>
-        <a href="#" class="social-link li" aria-label="LinkedIn" title="LinkedIn">
+        <a href="https://www.linkedin.com/company/satyanova" class="social-link li" aria-label="LinkedIn" title="LinkedIn">
           <i class="fa-brands fa-linkedin-in"></i>
         </a>
       </div>
@@ -1432,34 +1533,23 @@
      JAVASCRIPT
 ============================================================ -->
 <script>
-  /* ---- THEME TOGGLE ---- */
+  /* ---- PREMIUM THEME TOGGLE ---- */
   const html        = document.documentElement;
   const themeToggle = document.getElementById('themeToggle');
-  const themeIcon   = document.getElementById('themeIcon');
-  const themeLabel  = document.getElementById('themeLabel');
 
-  // Load saved preference from localStorage
+  // Restore saved theme preference on page load
   const savedTheme = localStorage.getItem('sn-theme') || 'dark';
   html.setAttribute('data-theme', savedTheme);
-  updateToggleUI(savedTheme);
 
+  // Toggle between dark and light on click
   themeToggle.addEventListener('click', () => {
     const current = html.getAttribute('data-theme');
     const next    = current === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next);
     localStorage.setItem('sn-theme', next);
-    updateToggleUI(next);
+    // Update aria-label for accessibility
+    themeToggle.setAttribute('aria-label', next === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
   });
-
-  function updateToggleUI(theme) {
-    if (theme === 'light') {
-      themeIcon.textContent  = '🌙';
-      themeLabel.textContent = 'Dark';
-    } else {
-      themeIcon.textContent  = '☀️';
-      themeLabel.textContent = 'Light';
-    }
-  }
 
   /* ---- MOBILE HAMBURGER MENU ---- */
   const hamburger    = document.getElementById('hamburger');
